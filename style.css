@@ -1,0 +1,323 @@
+/* Globale instellingen */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Sticky Header */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    z-index: 1000;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.top-logo {
+    max-width: 130px;
+    height: auto;
+}
+
+/* Pagina-indeling */
+.pagina-content {
+    margin-top: 110px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 40px 20px;
+    box-sizing: border-box;
+}
+
+/* Hoofdtitel (Anna-groen) */
+.pagina-titel {
+    font-size: 28px;
+    color: #21a500;
+    font-weight: 800;
+    text-align: left;
+    width: 100%;
+    max-width: 750px;
+    margin-bottom: 25px;
+    letter-spacing: -0.5px;
+}
+
+/* Keuzetool Container */
+#keuzetool-container {
+    background: #ffffff;
+    padding: 10px 0;
+    max-width: 750px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Vragen (Strak zwart) */
+.stap {
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e5e5e5;
+}
+
+.stap h2 {
+    font-size: 18px;
+    color: #111111;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.verborgen {
+    display: none;
+}
+
+/* Dropdown styling */
+select {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 6px;
+    border: 2px solid #21a500; /* Rand in Anna-groen */
+    background-color: #fff;
+    cursor: pointer;
+    color: #333;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+select:focus {
+    border-color: #008A8F; /* Accentkleur bij focus */
+}
+
+/* Styling voor de dropdown zodra er een antwoord is gekozen */
+select.gekozen-dropdown {
+    background-color: #008A8F !important; /* Solide petrol achtergrond */
+    color: #ffffff !important;            /* Witte tekstkleur */
+    border-color: #008A8F !important;     /* Rand kleurt mee in petrol */
+}
+
+/* ANTWOORDKNOPPEN: Standaard rustig wit, petrol border en STREK ZWARTE tekst */
+button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    background-color: #ffffff; /* Standaard witte achtergrond */
+    color: #008A8F; /* Aangepast naar krachtig, goed leesbaar zwart */
+    border: 2px solid #008A8F; /* De subtiele petrol border blijft */
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+/* Hover-effect: Wordt bij aanraken direct solide petrol met witte letters */
+button:hover {
+    background-color: #008A8F;
+    color: #ffffff; /* Tekst wordt wit bij hover */
+    border-color: #008A8F;
+    transform: translateY(-1px);
+    opacity: 1 !important;
+}
+
+/* De resultaatknop: direct in solide Anna-groen vanaf het begin */
+#btn-bereken {
+    background-color: #21a500; /* Direct solide Anna-groen */
+    color: #ffffff; /* Witte tekst voor optimaal contrast */
+    border: none;
+    font-size: 16px;
+    text-align: center; /* Netjes gecentreerd in plaats van links uitgelijnd */
+    font-weight: 700;
+    margin-top: 25px;
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(33, 165, 0, 0.2); /* Subtiele groene gloed */
+}
+
+/* De subtiele hover-aanpassing voor deze specifieke knop */
+#btn-bereken:hover {
+    background-color: #008A8F; /* Verandert elegant naar de petrol accentkleur */
+    box-shadow: 0 4px 12px rgba(0, 138, 143, 0.3); /* Schaduw kleurt mee */
+    transform: translateY(-1px);
+}
+
+/* Reset-knop: Standaard rustig wit met een strakke petrol border */
+.btn-reset {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 30px; /* Wat extra ademruimte onder de verslaglegging box */
+    background-color: #ffffff; /* Witte achtergrond */
+    color: #008A8F; /* De tekstkleur wordt petrol */
+    border: 2px solid #008A8F; /* Een strakke border in petrol */
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center; /* Netjes in het midden uitgelijned */
+}
+
+/* Hover-effect voor de reset-knop */
+.btn-reset:hover {
+    background-color: #008A8F; /* Achtergrond wordt solide petrol */
+    color: #ffffff; /* Tekst wordt strak wit */
+    border-color: #008A8F;
+    transform: translateY(-1px);
+}
+
+/* Toelichtingsbox (Geïnspireerd op lichte petrol/groen tinten) */
+.toelichting {
+    background-color: #008a8f0a; /* Heel zacht petrol transparant */
+    border: 1px solid #008a8f2b;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #444;
+}
+
+/* TOELICHTING LINKS: Nu in het herkenbare Anna-groen */
+.toelichting summary {
+    font-weight: 600;
+    color: #21a500; /* Veranderd van petrol naar Anna-groen */
+    cursor: pointer;
+    user-select: none;
+}
+
+.toelichting summary:hover {
+    color: #008A8F; /* Hover effect naar petrol */
+    text-decoration: underline;
+}
+
+/* GROENE CONCLUSIEBOXEN: Nu gebaseerd op een rustige, vagere petrol-tint */
+.feedback-box {
+    background-color: #008a8f0f; /* Rustige, vagere petrol achtergrond (transparant) */
+    color: #006063; /* Diepe, goed leesbare donker-petrol tekst */
+    padding: 12px 15px;
+    border-radius: 6px;
+    border-left: 4px solid #008A8F; /* Solide petrol streep aan de zijkant */
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Eindadvies Box */
+#advies-tekst {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    border-top: 4px solid #008A8F; /* Petrol accentbalk boven het eindadvies */
+}
+
+#advies-tekst h3 {
+    margin-top: 0;
+    color: #21a500; /* Groene titel in het eindadvies */
+}
+
+/* Zorgt dat de algemene toelichting bovenaan exact even breed is als de rest */
+.algemene-toelichting-wrapper {
+    width: 100%;
+    max-width: 750px;
+    margin-bottom: 10px; /* Sluit mooi aan op de keuzetool die eronder start */
+    box-sizing: border-box;
+}
+
+/* Styling voor de verplichte verslaglegging instructie onder het advies */
+.verslaglegging-notitie {
+    margin-top: 25px;
+    padding: 15px 20px;
+    background-color: #008a8f0a; /* Zachte, rustgevende transparant petrol tint */
+    border-left: 4px solid #008A8F; /* Strakke petrol marker aan de linkerkant */
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.verslaglegging-notitie p {
+    margin: 0 0 8px 0;
+}
+
+.verslaglegging-notitie p:last-child {
+    margin-bottom: 0;
+}
+
+/* De nieuwe strakke petrol-blauwe scheidingslijn */
+.resultaat-scheidingslijn {
+    border: none;
+    border-top: 4px solid #008A8F; /* Solide petrol dikke lijn */
+    margin: 40px 0 25px 0; /* Ruimte boven en onder de streep */
+    width: 100%;
+}
+
+/* De ingekorte titel 'Advies' onder de streep (Nu in het Anna-groen) */
+.resultaat-titel {
+    font-size: 22px !important;
+    color: #21a500 !important; /* Uitgevoerd in Anna-groen */
+    font-weight: 700 !important;
+    text-align: left;
+    margin-top: 0 !important;
+    margin-bottom: 15px !important;
+    letter-spacing: -0.5px;
+}
+
+/* We halen de petrol border van de adviestekst zelf weg, 
+   omdat de petrol lijn nu al als een prachtige header bovenaan de sectie staat */
+#advies-tekst {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    border-top: none; /* Rand weggehaald wegens de nieuwe scheidingslijn */
+    text-align: left;
+}
+
+/* Zorg dat de titel van de uitkomst IN de tekstbox ook netjes zwart/donker is */
+#advies-tekst h3 {
+    margin-top: 0;
+    color: #111111;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Styling voor de compacte Follow up box */
+.follow-up-box {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333333;
+    background: #f8f9fa; /* Dezelfde rustige achtergrond als de adviesbox */
+    padding: 20px;
+    border-radius: 6px;
+    text-align: left;
+    margin-top: 20px; /* Netjes geplaatst onder de adviesbox */
+    margin-bottom: 25px;
+}
+
+.follow-up-box p {
+    margin: 0;
+}
+
+.follow-up-box p {
+    margin: 0;
+}

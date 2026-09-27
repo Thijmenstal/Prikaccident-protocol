@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-step Keuzetool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Google Fonts link voor het Montserrat lettertype -->
+<link href="https://googleapis.com" rel="stylesheet">
+
+<!-- STATISCHE FIXED HEADER -->
+<header class="sticky-header">
+    <div class="header-logo-container">
+        <img src="https://www.annaziekenhuis.nl/Images/logos/logo-ziekenhuis.webp" alt="Anna Ziekenhuis Logo" class="top-logo">
+    </div>
+</header>
+
+<!-- PAGINA CONTENT CONTAINER -->
+<div class="pagina-content">
+    <h1 class="pagina-titel">Prikaccidenten protocol</h1>
+
+  <!-- DIRECTE TOELICHTINGEN BOVENAAN -->
+    <div class="algemene-toelichting-wrapper">
+        <!-- Blok 1: Algemene instructies -->
+        <details class="toelichting">
+            <summary>ℹ️ Algemene instructies en introductie van het protocol</summary>
+            <p>Dit protocol is ontworpen om medewerkers van het Anna Ziekenhuis snel te loodsen door de eerste stappen na een potentieel prik-, snij-, spat- of bijtaccident. Doorloop de onderstaande stappen nauwkeurig.</p>
+        </details>
+        
+        <!-- NIEUW: Blok 2: Eerste behandeling (EHBO) -->
+        <details class="toelichting" style="margin-top: 10px;">
+            <summary>🩸 Eerste behandeling direct na het accident</summary>
+            <p>Voer direct de volgende handelingen uit vóórdat u de vragenlijst invult:<br>
+            1. <strong>Bij een prik- of snijwond:</strong> Laat de wond goed doorbloeden (niet krachtig uitzuigen). Spoel de wond vervolgens met lauwwarm stromend water uit. Desinfecteer hierna met een huiddesinfectans (bijv. alcohol 70%).<br>
+            2. <strong>Bij spatten op slijmvliezen (ogen, mond):</strong> Spoel direct en langdurig met veel water of met een fysiologische zoutoplossing.<br>
+            3. <strong>Bij spatten op niet-intacte huid:</strong> Was de huid grondig met water en zeep en desinfecteer daarna.</p>
+        </details>
+    </div>
+
+    <div id="keuzetool-container">
+        
+        <!-- STAP 1: Incident selectie -->
+        <div id="stap-1" class="stap">
+            <h2>Stap 1: Wat voor type incident heeft plaatsgevonden?</h2>
+            <details class="toelichting">
+                <summary>ℹ️ Meer informatie over incidenten en risicoklassen</summary>
+                <p>Het transmissierisico hangt sterk af van het type vloeistof en de diepte van de verwonding.</p>
+            </details>
+            <div id="vragen-1">
+                <select id="incident-select" onchange="verwerkStap1()">
+                    <option value="" disabled selected>-- Maak een keuze --</option>
+                    <option value="1">Spatten van urine of speeksel op de intacte huid</option>
+                    <option value="2">Laag risico: Bijtwond waarbij er géén zichtbaar bloed aanwezig was</option>
+                    <option value="3">Hoog risico: Diepe prikwond met een holle naald met zichtbaar bloed</option>
+                </select>
+            </div>
+            <div id="feedback-1" class="feedback-box" style="display: none;"><p id="feedback-tekst-1"></p></div>
+        </div>
+
+        <!-- DYNAMISCHE VERVOLGVRAGEN -->
+        <div id="vervolg-stappen" class="verborgen">
+            
+            <!-- STAP 2: Hepatitis B Vaccinatiestatus -->
+            <div id="sectie-hbv" class="stap verborgen">
+                <h2>Stap 2: Wat is jouw Hepatitis B (HBV) vaccinatiestatus?</h2>
+                <details class="toelichting">
+    <summary>ℹ️ Welke vaccinatiestatus heeft de medewerker? (zie hiervoor de K-schijf)</summary>
+    <div style="margin-top: 10px; line-height: 1.6;">
+        <ul style="padding-left: 20px; margin: 0;">
+            <li style="margin-bottom: 12px;">
+                <strong>Volledig gevaccineerd, titer anti-HBs was ooit ≥10 IE/l:</strong><br>
+                ➔ <span style="color: #21a500; font-weight: 600;">Beschermd</span>
+            </li>
+            <li style="margin-bottom: 12px;">
+                <strong>Volledig gevaccineerd, titer anti-HBs na vaccinatie was &lt;10 IE/l:</strong><br>
+                ➔ Bekende non-responder (doorgemaakte of aanwezige HBV-infectie uitgesloten): <span style="color: #008A8F; font-weight: 600;">Onbeschermd</span>
+            </li>
+            <li style="margin-bottom: 12px;">
+                <strong>Volledig gevaccineerd, geen titer bepaald</strong> (ongeacht leeftijd en/of datum waarop vaccinatie plaatsvond):<br>
+                ➔ <span style="font-weight: 600;">Cito anti-HBs bepalen</span><br>
+                • anti-HBs ≥10 IE/l: <span style="color: #21a500; font-weight: 600;">Beschermd</span><br>
+                • anti-HBs &lt;10 IE/l: Afhandeling prikaccident als zijnde een mogelijke non-responder, nu <span style="color: #008A8F; font-weight: 600;">Onbeschermd</span>
+            </li>
+            <li style="margin-bottom: 12px;">
+                <strong>2 HBV-vaccinaties gehad</strong> (ongeacht leeftijd en/of datum waarop vaccinatie plaatsvond):<br>
+                ➔ <span style="font-weight: 600;">Cito anti-HBs bepalen</span><br>
+                • anti-HBs ≥10 IE/l: Nu <span style="color: #21a500; font-weight: 600;">Beschermd</span>, vaccinatie volgens oorspronkelijk schema voortzetten<br>
+                • anti-HBs &lt;10 IE/l: Afhandeling prikaccident als zijnde een mogelijke non-responder, nu <span style="color: #008A8F; font-weight: 600;">Onbeschermd</span>, daarnaast vaccinatie volgens oorspronkelijk schema voortzetten
+            </li>
+            <li style="margin-bottom: 12px;">
+                <strong>1 HBV-vaccinatie gehad:</strong><br>
+                ➔ Beschouwen als <span style="color: #008A8F; font-weight: 600;">Onbeschermd</span>
+            </li>
+            <li style="margin-bottom: 12px;">
+                <strong>Onbekende vaccinatiestatus:</strong><br>
+                ➔ Beschouwen als <span style="color: #008A8F; font-weight: 600;">Onbeschermd</span>
+            </li>
+            <li style="margin-bottom: 5px;">
+                <strong>Niet gevaccineerd, maar heeft infectie doorgemaakt of heeft een actieve HBV-infectie:</strong><br>
+                ➔ <span style="color: #21a500; font-weight: 600;">Beschermd</span>
+            </li>
+        </ul>
+    </div>
+</details>
+                <div id="vragen-hbv">
+                    <button onclick="kiesVervolg('hbvStatus', 'gevaccineerd', 'hbv', 'Conclusie: Je bent beschermd tegen Hepatitis B. Er is voor HBV geen verdere actie nodig.')">Blootgestelde is beschermd tegen HBV</button>
+                    <button onclick="kiesVervolg('hbvStatus', 'niet-gevaccineerd', 'hbv', 'De blootgestelde is niet (optimaal) beschermd tegen Hepatitis B. Aanvullend onderzoek naar de bron is noodzakelijk.')">Blootgestelde is niet beschermd</button>
+                </div>
+                <div id="feedback-hbv" class="feedback-box" style="display: none;"><p id="feedback-tekst-hbv"></p></div>
+            </div>
+
+            <!-- STAP 2b: Brononderzoek HBV -->
+           <!-- STAP 2b: Brononderzoek HBV -->
+<div id="sectie-hbv-bron" class="stap verborgen">
+    <h2>Stap 2b: Wat is de uitslag van het onderzoek naar de Bron (HBV)?</h2>
+    
+    <!-- NIEUW: TOELICHTING STAP 2B (Met jouw exacte protocoltekst) -->
+    <details class="toelichting">
+        <summary>ℹ️ Richtlijnen bronbloed, informed consent en laboratoriumonderzoek</summary>
+        <div style="margin-top: 10px; line-height: 1.6;">
+            <p style="margin-bottom: 12px;">
+                <strong>Laboratoriumbepalingen:</strong><br>
+                Indien de bron of zijn vertegenwoordiger instemt met het bloedonderzoek worden de volgende bepalingen verricht: <strong>HBsAg, cito liefst &lt; 24 uur</strong>. Bij een hoog transmissierisico dient u direct contact op te nemen met de dienstdoende arts-microbioloog voor een cito bepaling.
+            </p>
+            
+            <p style="margin-bottom: 12px;">
+                <strong>Los bronmateriaal (bijv. losse injectienaald):</strong><br>
+                Indien er slechts bronmateriaal beschikbaar is zoals een losse injectienaald, dan dient (later in het algoritme) de risico-inschatting gemaakt te worden op basis van de herkomst van dit materiaal en de prevalentie van bloedoverdraagbare aandoeningen onder de personen waarvan het materiaal afkomstig is. <em>Het is niet zinvol om losse naalden of bloedresten te onderzoeken op HBV, HCV of HIV.</em>
+            </p>
+            
+            <p style="margin-bottom: 12px;">
+                <strong>Positieve bron:</strong><br>
+                Een positieve bron kan voor verdere uitleg, analyse en behandeling worden verwezen naar de polikliniek infectieziekten als nieuwe patiënt.
+            </p>
+            
+            <p style="margin-bottom: 5px;">
+                <strong>Bronbloed en informed consent (Toestemming &amp; Privacy):</strong><br>
+                Bloedonderzoek kan alleen worden verricht wanneer de bron hiervoor toestemming geeft (leg dit vast in het dossier). Spreek duidelijk af <strong>WIE DE BRON INFORMEERT</strong> over eventuele bloeduitslagen. De arbo-dienst neemt nooit contact op met de bron. Dit is de verantwoordelijkheid van degene die de bron heeft geïnformeerd over het accident en (na toestemming) het bloed heeft afgenomen. Meestal is dit de hoofdbehandelaar; vanzelfsprekend kan men hiervan afwijken, als dit maar in goed overleg gebeurt.
+            </p>
+        </div>
+    </details>
+                <div id="vragen-hbv-bron-laag" class="verborgen">
+                    <button onclick="kiesVervolg('hbvBronUitslag', 'negatief', 'hbv-bron', 'Conclusie: De bron is laag risico en negatief. Geen risico op HBV.')">1. Negatief</button>
+                    <button onclick="kiesVervolg('hbvBronUitslag', 'positief-onbekend', 'hbv-bron', 'Conclusie: De bron is positief of onbekend bij een laag risico accident.')">2. Positief, of niet getest / niet bekend</button>
+                </div>
+                <div id="vragen-hbv-bron-hoog" class="verborgen">
+                    <button onclick="kiesVervolg('hbvBronUitslag', 'negatief', 'hbv-bron', 'Conclusie: De bron is negatief getest. Geen risico op HBV.')">1. Negatief</button>
+                    <button onclick="kiesVervolg('hbvBronUitslag', 'positief', 'hbv-bron', 'Conclusie: De bron is bekend HBV-positief. Directe actie vereist.')">2. Bekend Positief</button>
+                    <button onclick="kiesVervolg('hbvBronUitslag', 'onbekend', 'hbv-bron', 'Conclusie: De bron is onbekend/niet getest. We kijken naar het risicoprofiel van de bron.')">3. Niet getest / niet bekend</button>
+                </div>
+                <div id="feedback-hbv-bron" class="feedback-box" style="display: none;"><p id="feedback-tekst-hbv-bron"></p></div>
+            </div>
+
+            <!-- STAP 2c: Risicogroep Bron HBV -->
+            <div id="sectie-hbv-bron-risico" class="stap verborgen">
+                <h2>Stap 2c: Komt de bron uit een groep met een hoog risico op HBV?</h2>
+                <details class="toelichting">
+                    <summary>ℹ️ Wat is een hoog-risicogroep?</summary>
+                    <p>Denk hierbij aan eerste-generatiemigranten uit HBV-endemische gebieden of intraveneuze druggebruikers.</p>
+                </details>
+                <div id="vragen-hbv-bron-risico">
+                    <button onclick="kiesVervolg('hbvBronRisicogroep', 'ja', 'hbv-bron-risico', 'Conclusie: De onbekende bron behoort tot een hoog-risicogroep. Verhoogde alertheid vereist.')">1. Ja</button>
+                    <button onclick="kiesVervolg('hbvBronRisicogroep', 'nee', 'hbv-bron-risico', 'Conclusie: De onbekende bron behoort niet tot een bekende hoog-risicogroep.')">2. Nee</button>
+                </div>
+                <div id="feedback-hbv-bron-risico" class="feedback-box" style="display: none;"><p id="feedback-tekst-hbv-bron-risico"></p></div>
+            </div>
+
+            <!-- STAP 3: Hepatitis C -->
+            <div id="sectie-hcv" class="stap verborgen">
+                <h2>Stap 3: Is de Hepatitis C (HCV) status van de bron bekend?</h2>
+                <div id="vragen-hcv">
+                    <button onclick="kiesVervolg('hcvBron', 'positief', 'hcv', 'Conclusie: Er is risico op HCV-overdracht. Bloedopvolging is later noodzakelijk.')">Ja, de bron is HCV-positief</button>
+                    <button onclick="kiesVervolg('hcvBron', 'negatief', 'hcv', 'Conclusie: De bron is HCV-negatief. Er is geen risico op HCV-overdracht.')">Ja, de bron is HCV-negatief</button>
+                    <button onclick="kiesVervolg('hcvBron', 'onbekend', 'hcv', 'Conclusie: Risico op HCV kan niet worden uitgesloten. Bloedopvolging is later noodzakelijk.')">Nee, de bronstatus is onbekend</button>
+                </div>
+                <div id="feedback-hcv" class="feedback-box" style="display: none;"><p id="feedback-tekst-hcv"></p></div>
+            </div>
+
+            <!-- STAP 4: HIV -->
+            <div id="sectie-hiv" class="stap verborgen">
+                <h2>Stap 4: Wat is de HIV status van de bron of het risicoprofiel?</h2>
+                <div id="vragen-hiv">
+                    <button onclick="kiesVervolg('hivBron', 'hoog-risico', 'hiv', 'Conclusie: Er is een verhoogd risico op HIV. Directe medische beoordeling voor PEP-noodmedicatie is vereist.')">Hoog risico (bron positief / risicogroep)</button>
+                    <button onclick="kiesVervolg('hivBron', 'laag-risico', 'hiv', 'Conclusie: Het risico op HIV is verwaarloosbaar laag. Geen spoedmedicatie nodig.')">Laag risico (bron negatief)</button>
+                </div>
+                <div id="feedback-hiv" class="feedback-box" style="display: none;"><p id="feedback-tekst-hiv"></p></div>
+            </div>
+
+        </div>
+
+        <!-- KNOP NAAR RESULTAAT -->
+        <button id="btn-bereken" class="verborgen" onclick="toonEindAdvies()">Bekijk het volledige advies & actieplan →</button>
+
+<!-- RESULTAAT PAGINA -->
+<div id="stap-resultaat" class="stap verborgen">
+    <hr class="resultaat-scheidingslijn">
+    
+    <h2 class="resultaat-titel">Advies</h2>
+    <div id="advies-tekst"></div>
+    
+    <!-- GEWJZIGD: FOLLOW UP ALS SUBTIELE DIKGEDRUKTE TEKST IN DE BOX -->
+    <div class="follow-up-box">
+        <p><strong>Follow up:</strong></p>
+        <p style="margin-top: 5px;">Adviseer de medewerker op de eerstvolgende werkdag contact op te nemen met de Arbodienst. Geef hiervoor de SEH brief mee ter overdracht.</p>
+    </div>
+    
+    <!-- VASTE VERPLICHTE TOELICHTING VERSLAGLEGGING -->
+    <div class="verslaglegging-notitie">
+        <p>ℹ️ <strong>Belangrijke instructie voor de behandelaar:</strong></p>
+        <p>De dienstdoende arts zorgt voor een goede verslaglegging in het dossier met de aard, toedracht en risico-inschatting van het incident, inclusief het geadviseerde beleid en follow up. Stuur een kopie van dit dossier via beveiligde mail naar de arbo-dienst.</p>
+    </div>
+
+    <button onclick="resetTool()" class="btn-reset">Opnieuw beginnen</button>
+</div>
+
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
